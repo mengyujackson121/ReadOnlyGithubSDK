@@ -2,7 +2,13 @@ from collections import Counter
 from functools import cached_property
 from typing import List
 from attrs import define
-from src.readonly_github_sdk.endpoints import get_following, get_followers, get_contributors, get_languages, get_repos
+from src.readonly_github_sdk.endpoints import (
+    get_following,
+    get_followers,
+    get_contributors,
+    get_languages,
+    get_repos,
+)
 
 
 @define(slots=False)
@@ -30,6 +36,7 @@ class User:
             print(f"{repo_dict=}")
             repos.append(Repo(self, repo_dict["name"]))
         return repos
+
 
 @define(slots=False)
 class Repo:

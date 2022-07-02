@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='readonly_github_sdk',
-    version='0.1',
+    version='0.2',
     license='MIT',
     author="Mengyu Jackson",
     author_email='mengyujackson121@gmail.com',

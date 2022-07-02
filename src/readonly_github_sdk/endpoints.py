@@ -1,6 +1,7 @@
 from typing import List, Dict
 import requests
 
+
 def rate_limited_get(*args, **kwargs):
     requests.get(*args, **kwargs)
 
@@ -34,31 +35,41 @@ def get_user(username: str):
     ).json()
 
 
-def get_followers(username: str) -> List[Dict]:
+def get_followers(username: str, **kwargs) -> List[Dict]:
     """Gets all followers for provided user"""
     return get_paginated_results(
         f"https://api.github.com/users/{username}/followers",
+        **kwargs,
     )
 
 
-def get_following(username: str) -> List[Dict]:
+def get_following(username: str, **kwargs) -> List[Dict]:
     """Gets all users who follow the provided user"""
     return get_paginated_results(
         f"https://api.github.com/users/{username}/following",
+        **kwargs,
     )
 
 
-def get_repos(username: str) -> List[Dict]:
+def get_repos(username: str, **kwargs) -> List[Dict]:
     """Gets all public repos the provided user owns"""
-    return get_paginated_results(f"https://api.github.com/users/{username}/repos")
+    return get_paginated_results(
+        f"https://api.github.com/users/{username}/repos",
+        **kwargs,
+    )
 
 
-def get_contributors(username: str, repo: str) -> List[Dict]:
-    return get_paginated_results(f"https://api.github.com/repos/{username}/{repo}/contributors")
+def get_contributors(username: str, repo: str, **kwargs) -> List[Dict]:
+    return get_paginated_results(
+        f"https://api.github.com/repos/{username}/{repo}/contributors", **kwargs
+    )
 
 
-def get_languages(username: str, repo: str) -> List[str]:
-    return requests.get(f"https://api.github.com/repos/{username}/{repo}/languages").json()
+def get_languages(username: str, repo: str, **kwargs) -> List[str]:
+    return requests.get(
+        f"https://api.github.com/repos/{username}/{repo}/languages", **kwargs
+    ).json()
+
 
 print(get_contributors("foo", "algorithmic-networks"))
 print(get_languages("foo", "algorithmic-networks"))
