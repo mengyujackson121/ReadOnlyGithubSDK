@@ -1,0 +1,8 @@
+pytest
+hypothesis
+pytest-vcr
+requests
+attrs
+black
+jupyter
+twine
